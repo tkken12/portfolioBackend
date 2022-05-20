@@ -3,6 +3,7 @@ cert-crt.crt
 cert-key.key
 
 # Logs
+Log/
 logs
 *.log
 npm-debug.log*
