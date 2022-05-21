@@ -8,21 +8,18 @@ const pool = mariadb.createPool({ host           : process.env.MARIA_HOST,
                                   connectionLimit: 3
                                })
 
-let mariaConn 
+let mariaConn = null 
 
 const setConn = async () => { return await pool.getConnection() } 
 
-function MariaConn() { 
-    return new Promise( ( reslove, reject ) => { 
+const MariaConn = async() => { 
         try {
-            mariaConn = setConn() 
-            reslove( mariaConn )
+            mariaConn = await setConn()
             logger.info("mariadb connection successful.")
         }
         catch (err) {
-            reject(err)
+            logger.warn("failed to connection mariadb " + err )
         }
-    })
 }
 
 const MariaQuery = async( args ) => { 
