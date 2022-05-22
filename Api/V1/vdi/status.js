@@ -13,19 +13,16 @@ router.get("/", async( req, res ) =>{
     }
 
     try { 
-        let getStatus = await MariaQuery("SELECT * FROM guacamole_connection;")
 
         sendData["message"] = RESPONSE_MESSAGE[REQUEST_METHOD["GET"]][STATUS["SUCCESS"]]("vdi items")
-        sendData["data"]    = getStatus
+        sendData["data"]    = await MariaQuery("SELECT * FROM guacamole_connection;")
         sendData["status"]  = STATUS_CODE[200]
 
         sendResponse( res, sendData )
-        // res.json( !!getStatus !== false ? getStatus : [] )
 
     } catch ( err ) {
 
         sendData["message"] = RESPONSE_MESSAGE[REQUEST_METHOD["GET"]][STATUS["FAIL"]]("vdi items")
-        sendData["data"]    = []
         sendData["status"]  = STATUS_CODE[403]
 
         sendResponse( res, sendData )
