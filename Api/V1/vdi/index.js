@@ -1,7 +1,6 @@
 const router = require("express").Router()
-const vdi    = require("./vdi/index")
+const status = require("./status")
 
-router.use("/vdi", vdi )
-
+router.use("/status", status)
 
 module.exports = router

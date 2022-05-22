@@ -27,8 +27,9 @@ const MariaQuery = async( args ) => {
         return await mariaConn.query( args )
 
     } catch( err ) { 
-        logger.warn("failed to query " + args + " " + err )
+        // logger.warn("failed to query " + args + " " + err )
         mariaConn.release()
+        throw("failed to query " + args)
     }
     finally{
         if ( mariaConn ) mariaConn.release()

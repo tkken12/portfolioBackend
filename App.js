@@ -38,6 +38,6 @@ const appBegin = () => {
 MariaConn()
     .then( appBegin )
     .catch( (err) => { 
-        logger.warn( err )
+        logger.error( err )
         process.exit(0)
     })
